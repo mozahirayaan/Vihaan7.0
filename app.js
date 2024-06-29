@@ -265,7 +265,7 @@ function handleAuthentication(err, user, userType, req, res, next) {
     });
 }
 
-app.post("/home-form",(req,res)=>{
+app.post('/home-form',(req,res)=>{
     res.redirect('/doctor');
 })
 
