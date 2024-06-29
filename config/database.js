@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(MONGODB_ATLAS);
+mongoose.connect(process.env.MONGODB_ATLAS);
 
 const userSchema = mongoose.Schema({
     username: String,
