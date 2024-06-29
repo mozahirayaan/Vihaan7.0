@@ -196,7 +196,7 @@ app.post('/appointment/:doctor', isAuthenticated,async (req, res) => {
         await appointments.save();
         const msg=`Hello ${req.session.name}, your appointment with Dr. ${doctor} is booked for ${req.body.date} at ${req.body.time}.`;
 
-        
+
         /*const message = await sendWhatsAppMessage(`+91${req.body.phone}`, msg);
         console.log("WhatsApp message sent successfully:", message);*/
         //Above code for twilio
@@ -265,7 +265,7 @@ function handleAuthentication(err, user, userType, req, res, next) {
     });
 }
 
-app.post("home-form",(req,res)=>{
+app.post('/home-form',(req,res)=>{
     res.redirect('/doctor');
 })
 
