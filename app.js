@@ -21,7 +21,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://ayaan:abcd@cluster0.idzcx6c.mongodb.net/Vihaan?retryWrites=true&w=majority', collectionName: "sessions" }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_ATLAS, collectionName: "sessions" }),
     cookie: {
         maxAge: 1000 * 60 * 60 * 24
     }
