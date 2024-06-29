@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Call</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"><div id="jitsi-container" style="width: 1000px; height: 900px;"></div></div>
+    <script src='https://meet.jit.si/external_api.js'></script>
+    <script>
+        const domain = 'meet.jit.si/<%= roomId %>';
+        const options = {
+            configOverwrite: { startWithAudioMuted: true },
+            interfaceConfigOverwrite: { DISABLE_DOMINANT_SPEAKER_INDICATOR: true },
+            roomName: '<%= roomId %>',
+            width: 1000,
+            height: 700,
+            userInfo: {
+                displayName: '<%= user.name %>'
+               },
+            parentNode: document.querySelector('#jitsi-container')
+        };
+        const api = new JitsiMeetExternalAPI(domain, options);
+    </script>
+    <script src='https://meet.jit.si/external_api.js'></script>
+
+</body>
+</html>

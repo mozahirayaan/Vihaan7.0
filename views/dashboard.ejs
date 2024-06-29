@@ -1,0 +1,134 @@
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .navbar{
+            width:100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        ul{
+            display: flex;
+            list-style: none;
+        }
+        li{
+            cursor: pointer;
+            padding: 25px;
+        }
+        .stats{
+            display:flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .stats-display {
+            display: flex;
+            justify-content: center;
+            background-color: blue;
+            padding: 30px;
+            font-size: 40px;
+            color: white;
+            width: 80%;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+        .main-cont{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            padding: 45px;
+        }
+        .main{
+            font-size: 40px;
+            width: 80%;
+            font-family: "Exo", sans-serif;
+        }
+        button{
+            background-color: #e12454;
+            font-family: "Exo", sans-serif;
+            font-size: 1rem;
+            padding: .75rem 2rem;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            margin-top: 20px;
+
+        }
+        .main-sec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+        .card-holder{
+            width:70%;
+            display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+        }
+        .card{
+            border-color: #e12454;
+            font-size: 10px;
+            padding: 50px;
+            border-radius: 25px;
+            margin: 20px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit; 
+        }
+    
+        a:hover {
+            color: red;
+        }
+
+        button:hover{
+            background-color: #6610f2;
+        }
+        
+    </style>
+</head>
+
+<body >
+    <div class="navbar">
+        <img src="./images/logo.png" style="width:100px;height:100px;border-radius: 100%;margin-left:55px">
+        <ul>
+            <a href="/"><li>Home</li></a>
+            <a href="/about"><li>About</li></a>
+            <a href="https://wa.me/8826494481"><li>Contact</li></a>
+            <a href="/doctor"><li>Doctors</li></a>
+            <a href="/login"><li>Login</li></a>
+            <a href="/signup"><li>Sign UP</li></a>
+        </ul>
+    </div>
+    <div class="stats">
+    <div class="stats-display">Dashboard</div>
+    </div>
+    <div class="main-cont">
+    <div class="main">Hello <%= user.name %>,<br>Your appointments</div>
+    </div>
+    <div class="main-sec">
+    <div class="card-holder">
+        <% appointments.forEach(appointment => { %>
+            <% doctors.forEach(doctor => { %>
+                <% if (appointment.doctorUsername === doctor.username) { %>
+                    <div class="card">
+                        <h style="font-size: 30px; color:blue;"><%= doctor.name %></h><br>
+                        <p style="font-size: 15px; color: grey;">Department: <%= doctor.department %></p>
+                        <p style="font-size: 15px; color: grey;">Date: <%= appointment.date %> | Time: <%= appointment.time %></p>
+                        <a href="/video-call/<%= appointment.roomId %>"><button>Doctor's room | ></button></a>
+                    </div>
+                <% } %>
+            <% }); %>
+        <% }); %>
+    </div>
+    </div>
+</body>
+
+</html>
