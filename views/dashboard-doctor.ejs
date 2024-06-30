@@ -59,11 +59,20 @@
             margin-top: 20px;
 
         }
+        .main-sec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
         .card-holder{
-            display:flex;
-            justify-content: center;
-            margin-top:30px;
+            width:70%;
+            display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
         }
+
         .card{
             border-color: #e12454;
             font-size: 10px;
@@ -105,6 +114,7 @@
     <div class="main-cont">
     <div class="main">Hello <%= user.name %>,<br>Your appointments</div>
     </div>
+    <div class="main-sec">
     <div class="card-holder">
         <% appointments.forEach(appointment => { %>
             <% patient.forEach(patient => { %>
@@ -119,6 +129,7 @@
             <% }); %>
         <% }); %>
     </div>
+</div>
 </body>
 
 </html>

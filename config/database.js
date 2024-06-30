@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-mongoose.connect('mongodb+srv://ayaan:abcd@cluster0.idzcx6c.mongodb.net/Vihaan?retryWrites=true&w=majority');
+mongoose.connect(process.env.MONGODB_ATLAS);
 
 const userSchema = mongoose.Schema({
     username: String,
