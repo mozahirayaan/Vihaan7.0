@@ -99,11 +99,21 @@ app.get('/', (req, res) => {
 });
 
 app.get('/signup', (req, res) => {
-    res.render("signup");
+    if(req.session.username){
+        res.redirect('/dashboard-patient')
+    }
+    else{
+        res.render("signup");
+    }
 });
 
 app.get('/login', (req, res) => {
-    res.render("login");
+    if(req.session.username){
+        res.redirect('/dashboard-patient')
+    }
+    else{
+        res.render("login");
+    }
 });
 
 app.get('/appointment/:doctor', isAuthenticated, (req, res) => {
@@ -113,10 +123,13 @@ app.get('/appointment/:doctor', isAuthenticated, (req, res) => {
 
 app.get('/dashboard-patient', isAuthenticated, async (req, res) => {
     try {
-        const doctors = await DoctorModel.find({});
+        if(req.session.userType==="doctor"){
+            res.redirect('/dashboard-doctor');
+        }
+        else {const doctors = await DoctorModel.find({});
         const appointments = await AppointmentModel.find({ patientUsername: req.session.username });
         
-        res.render("dashboard", { appointments: appointments, doctors: doctors, user:req.session });
+        res.render("dashboard", { appointments: appointments, doctors: doctors, user:req.session });}
     } catch (err) {
         console.error("Error fetching appointments:", err);
     }
